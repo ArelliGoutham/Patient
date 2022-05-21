@@ -13,7 +13,7 @@ public class PatientService {
     @Autowired
     private PatientRepo repo;
 
-    public PatientResponse getPatientData(int id) {
+    public PatientResponse getPatientData(String id) {
         return repo.getPatientDetails(id);
     }
 }

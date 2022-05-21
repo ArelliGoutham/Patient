@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface PatientRepo extends JpaRepository<Patient, Integer> {
 
     @Query(nativeQuery = true, value = "select p.id as id,p.name as name,p.age as age,p.date_of_visit as dateOfVisit,p.prescription as prescription, d.name as doctorName,d.specialization as specialization from patient p join doctor d on p.doctor_id = d.id where p.id = :id")
-    public PatientResponse getPatientDetails(int id);
+    public PatientResponse getPatientDetails(String id);
 }
