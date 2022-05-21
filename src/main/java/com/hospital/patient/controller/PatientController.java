@@ -26,9 +26,9 @@ public class PatientController {
         if (response != null) {
             return new ResponseEntity<PatientResponse>(response, HttpStatus.OK);
         } else if (response == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return null;
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
