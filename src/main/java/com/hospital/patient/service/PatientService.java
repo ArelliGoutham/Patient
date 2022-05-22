@@ -16,4 +16,17 @@ public class PatientService {
     public PatientResponse getPatientData(String id) {
         return repo.getPatientDetails(id);
     }
+
+    public void savePrescription(Patient entity) {
+        repo.savePrescription(entity.getId(), entity.getPrescription());
+    }
+
+    public Patient savePatient(Patient entity) {
+        try {
+            return repo.save(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

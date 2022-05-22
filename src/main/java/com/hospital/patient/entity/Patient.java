@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,40 +14,44 @@ import javax.persistence.OneToOne;
 public class Patient {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
     private int age;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
-    private Doctor visitedDoctor;
+
+    private int doctorId;
     private Date dateOfVisit;
     private String prescription;
 
     public Patient() {
     }
 
-    public Patient(String name, int age, Doctor visitedDoctor, Date dateOfVisit) {
+    public Patient(int id, String prescription) {
+        this.id = id;
+        this.prescription = prescription;
+    }
+
+    public Patient(String name, int age, int doctorId, Date dateOfVisit) {
         this.name = name;
         this.age = age;
-        this.visitedDoctor = visitedDoctor;
+        this.doctorId = doctorId;
         this.dateOfVisit = dateOfVisit;
     }
 
-    public Patient(int id, String name, int age, Doctor visitedDoctor, Date dateOfVisit) {
+    public Patient(int id, String name, int age, int visitedDoctor, Date dateOfVisit) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.visitedDoctor = visitedDoctor;
+        this.doctorId = visitedDoctor;
         this.dateOfVisit = dateOfVisit;
     }
 
-    public Patient(int id, String name, int age, Doctor visitedDoctor, Date dateOfVisit, String prescription) {
+    public Patient(int id, String name, int age, int visitedDoctor, Date dateOfVisit, String prescription) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.visitedDoctor = visitedDoctor;
+        this.doctorId = visitedDoctor;
         this.dateOfVisit = dateOfVisit;
         this.prescription = prescription;
     }
@@ -75,12 +80,12 @@ public class Patient {
         this.age = age;
     }
 
-    public Doctor getVisitedDoctor() {
-        return visitedDoctor;
+    public int getVisitedDoctor() {
+        return doctorId;
     }
 
-    public void setVisitedDoctor(Doctor visitedDoctor) {
-        this.visitedDoctor = visitedDoctor;
+    public void setVisitedDoctor(int visitedDoctor) {
+        this.doctorId = visitedDoctor;
     }
 
     public Date getDateOfVisit() {
@@ -102,7 +107,7 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient [age=" + age + ", dateOfVisit=" + dateOfVisit + ", id=" + id + ", name=" + name
-                + ", prescription=" + prescription + ", visitedDoctor=" + visitedDoctor + "]";
+                + ", prescription=" + prescription + ", visitedDoctor=" + doctorId + "]";
     }
 
 }
