@@ -23,7 +23,12 @@ public class PatientController {
     private PatientService service;
 
     private PatientResponse response;
-
+    
+    @GetMapping(value = "/")
+    public String tempPatient(){
+        return "The Heroku API is working";
+    }
+    
     @PostMapping(value = "/patient")
     public ResponseEntity<Patient> bookAppointment(@RequestBody Patient entity) {
         Patient patient = service.savePatient(entity);
